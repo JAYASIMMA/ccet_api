@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const examinationController_1 = require("../controllers/examinationController");
+const authMiddleware_1 = require("../middleware/authMiddleware");
+const router = (0, express_1.Router)();
+router.get('/', authMiddleware_1.verifyToken, examinationController_1.getExams);
+router.post('/', authMiddleware_1.verifyToken, (0, authMiddleware_1.authorizeRoles)('admin', 'super-admin'), examinationController_1.createExam);
+router.delete('/:id', authMiddleware_1.verifyToken, (0, authMiddleware_1.authorizeRoles)('admin', 'super-admin'), examinationController_1.deleteExam);
+exports.default = router;
