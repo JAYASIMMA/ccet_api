@@ -5,7 +5,7 @@ export interface Admin {
     id?: number;
     name: string;
     email: string;
-    role: 'admin' | 'super-admin';
+    role: 'admin' | 'super-admin' | 'transport-admin';
     password?: string;
 }
 

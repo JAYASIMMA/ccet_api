@@ -13,6 +13,11 @@ import studentAttendanceRoutes from './routes/studentAttendanceRoutes';
 import teacherProfileRoutes from './routes/teacherProfileRoutes';
 import technicalStaffRoutes from './routes/technicalStaffRoutes';
 import nonTechnicalStaffRoutes from './routes/nonTechnicalStaffRoutes';
+import transportRoutes from './routes/transportRoutes';
+import complaintRoutes from './routes/complaintRoutes';
+import userRoutes from './routes/userRoutes';
+import labRoutes from './routes/labRoutes';
+
 import { errorHandler } from './middleware/errorMiddleware';
 
 dotenv.config();
@@ -51,6 +56,11 @@ app.use('/student-attendance', studentAttendanceRoutes);
 app.use('/teacher-profiles', teacherProfileRoutes);
 app.use('/technical-staff', technicalStaffRoutes);
 app.use('/non-technical-staff', nonTechnicalStaffRoutes);
+app.use('/transport', transportRoutes);
+app.use('/complaints', complaintRoutes);
+app.use('/users', userRoutes);
+app.use('/labs', labRoutes);
+
 
 app.get('/', (req, res) => {
     res.send('CCET API is running');

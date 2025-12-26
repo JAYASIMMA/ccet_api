@@ -25,7 +25,7 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
             const existing = await getTeacherByEmail(data.email);
             if (existing) return res.status(400).json({ message: 'Email already exists' });
             await createTeacher({ ...data, password: hashedPassword });
-        } else if (role === 'admin' || role === 'super-admin') {
+        } else if (role === 'admin' || role === 'super-admin' || role === 'transport-admin') {
             // usually admin creation is restricted, but for this task I'll allow it or rely on the /admins endpoint for adding admins. 
             // "POST /auth/register -> register user" implies public registration or generic.
             // But the requirement "POST /admins -> add new admin (super-admin only)" suggests admins are added separately.
@@ -53,7 +53,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
             user = await getStudentByEmail(email);
         } else if (role === 'teacher') {
             user = await getTeacherByEmail(email);
-        } else if (role === 'admin' || role === 'super-admin') {
+        } else if (role === 'admin' || role === 'super-admin' || role === 'transport-admin') {
             user = await getAdminByEmail(email);
         } else {
             return res.status(400).json({ message: 'Role is required (student, teacher, admin)' });
