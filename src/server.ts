@@ -17,6 +17,7 @@ import transportRoutes from './routes/transportRoutes';
 import complaintRoutes from './routes/complaintRoutes';
 import userRoutes from './routes/userRoutes';
 import labRoutes from './routes/labRoutes';
+import hostelRoutes from './routes/hostelRoutes';
 
 import { errorHandler } from './middleware/errorMiddleware';
 
@@ -60,6 +61,7 @@ app.use('/transport', transportRoutes);
 app.use('/complaints', complaintRoutes);
 app.use('/users', userRoutes);
 app.use('/labs', labRoutes);
+app.use('/hostels', hostelRoutes);
 
 
 app.get('/', (req, res) => {

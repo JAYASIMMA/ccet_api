@@ -55,8 +55,12 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
             user = await getTeacherByEmail(email);
         } else if (role === 'admin' || role === 'super-admin' || role === 'transport-admin') {
             user = await getAdminByEmail(email);
+        } else if (role === 'warden') {
+            // For now, assume Wardens are registered as Teachers or Staff. 
+            // Using Teacher table for simplicity as they are often faculty.
+            user = await getTeacherByEmail(email);
         } else {
-            return res.status(400).json({ message: 'Role is required (student, teacher, admin)' });
+            return res.status(400).json({ message: 'Role is required (student, teacher, admin, warden)' });
         }
 
         if (!user) return res.status(404).json({ message: 'User not found' });
